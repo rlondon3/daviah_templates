@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: var(--industry-primary, 221.2 83.2% 53.3%);
+    --primary-light: hsl(var(--primary) / 0.1);
+    --secondary: var(--industry-secondary, 210 40% 96.1%);
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --tertiary: var(--industry-tertiary, 280 40% 50%);
+    --tertiary-foreground: 210 40% 98%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: var(--industry-accent, 210 40% 96.1%);
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--industry-primary, 221.2 83.2% 53.3%);
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: var(--industry-primary, 217.2 91.2% 59.8%);
+    --primary-light: hsl(var(--primary) / 0.1);
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--industry-secondary, 217.2 32.6% 17.5%);
+    --secondary-foreground: 210 40% 98%;
+    --tertiary: var(--industry-tertiary, 280 40% 50%);
+    --tertiary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: var(--industry-accent, 217.2 32.6% 17.5%);
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* E-commerce specific styles */
+  .ecommerce {
+    --font-heading: "Space Grotesk";
+    --font-body: "Inter";
+    --card-radius: theme('borderRadius.2xl');
+    --card-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    --card-pattern: radial-gradient(circle at 30% -20%, hsl(var(--primary) / 0.2), transparent 50%);
+  }
+
+  /* Restaurant specific styles */
+  .restaurant {
+    --font-heading: "Bodoni Moda";
+    --font-body: "Cormorant";
+    --card-radius: 0;
+    --card-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    --card-pattern: url('/patterns/restaurant.svg');
+  }
+
+  /* Dispensary specific styles */
+  .dispensary {
+    --font-heading: "Tenor Sans";
+    --font-body: "DM Sans";
+    --card-radius: theme('borderRadius.lg');
+    --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --card-pattern: linear-gradient(135deg, hsl(var(--primary) / 0.1), transparent 70%);
+  }
+
+  /* Barbershop specific styles */
+  .barbershop {
+    --font-heading: "Archivo Black";
+    --font-body: "Gothic A1";
+    --card-radius: 0;
+    --card-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+    --card-pattern: repeating-linear-gradient(45deg, hsl(var(--primary) / 0.05) 0px, transparent 1px);
+  }
+
+  /* Tattoo specific styles */
+  .tattoo {
+    --font-heading: "Abril Fatface";
+    --font-body: "Fira Sans";
+    --card-radius: theme('borderRadius.sm');
+    --card-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    --card-pattern: radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.15), transparent 70%);
+  }
+
+  /* Contractor specific styles */
+  .contractor {
+    --font-heading: "Roboto Mono";
+    --font-body: "Source Sans Pro";
+    --card-radius: theme('borderRadius.lg');
+    --card-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    --card-pattern: linear-gradient(90deg, hsl(var(--primary) / 0.1), transparent 80%);
+  }
+
+  /* Real estate specific styles */
+  .realestate {
+    --font-heading: "Libre Baskerville";
+    --font-body: "Lato";
+    --card-radius: theme('borderRadius.xl');
+    --card-shadow: 0 16px 48px rgba(0,0,0,0.15);
+    --card-pattern: linear-gradient(135deg, hsl(var(--primary) / 0.1), transparent 60%);
+  }
+}
+
+@layer components {
+  /* Base card styles */
+  .industry-card {
+    @apply relative overflow-hidden transition-all duration-300;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    background-image: var(--card-pattern);
+  }
+
+  /* Industry-specific button styles */
+  .ecommerce .btn {
+    @apply rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .restaurant .btn {
+    @apply rounded-none border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+  }
+
+  .dispensary .btn {
+    @apply rounded-lg bg-primary/90 text-primary-foreground hover:bg-primary transition-all duration-200;
+  }
+
+  .barbershop .btn {
+    @apply rounded-none bg-primary text-primary-foreground uppercase tracking-wider hover:bg-primary/90 transition-all duration-200;
+  }
+
+  .tattoo .btn {
+    @apply rounded-sm bg-primary text-primary-foreground border border-primary hover:bg-transparent hover:text-primary transition-all duration-300;
+  }
+
+  .contractor .btn {
+    @apply rounded-lg bg-primary text-primary-foreground font-mono uppercase hover:bg-primary/90 transition-all duration-200;
+  }
+
+  .realestate .btn {
+    @apply rounded-xl bg-primary text-primary-foreground shadow-md hover:shadow-lg transition-all duration-300;
+  }
+
+  /* Industry-specific input styles */
+  .ecommerce .input {
+    @apply rounded-full border-2 focus:ring-2 focus:ring-primary/20 transition-all duration-300;
+  }
+
+  .restaurant .input {
+    @apply rounded-none border-b-2 border-x-0 border-t-0 focus:border-primary transition-all duration-300;
+  }
+
+  .dispensary .input {
+    @apply rounded-lg border focus:ring-2 focus:ring-primary/20 transition-all duration-200;
+  }
+
+  .barbershop .input {
+    @apply rounded-none border-2 uppercase focus:border-primary transition-all duration-200;
+  }
+
+  .tattoo .input {
+    @apply rounded-sm border-2 focus:border-primary transition-all duration-300;
+  }
+
+  .contractor .input {
+    @apply rounded-lg border-2 font-mono focus:border-primary transition-all duration-200;
+  }
+
+  .realestate .input {
+    @apply rounded-xl border shadow-sm focus:ring-2 focus:ring-primary/20 transition-all duration-300;
+  }
+
+  /* Animation utilities */
+  .animate-in {
+    animation: animate-in 0.5s ease-out;
+  }
+
+  .animate-out {
+    animation: animate-out 0.5s ease-in;
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes animate-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+}
+
+/* Industry-specific animations */
+@layer utilities {
+  .ecommerce-hover {
+    @apply hover:-translate-y-2 hover:scale-105 transition-all duration-300;
+  }
+
+  .restaurant-hover {
+    @apply hover:rotate-1 hover:scale-105 transition-all duration-300;
+  }
+
+  .dispensary-hover {
+    @apply hover:-translate-y-1 hover:scale-102 transition-all duration-200;
+  }
+
+  .barbershop-hover {
+    @apply hover:scale-105 hover:-rotate-1 transition-all duration-200;
+  }
+
+  .tattoo-hover {
+    @apply hover:scale-110 hover:rotate-2 transition-all duration-300;
+  }
+
+  .contractor-hover {
+    @apply hover:-translate-y-2 hover:shadow-lg transition-all duration-200;
+  }
+
+  .realestate-hover {
+    @apply hover:-translate-y-3 hover:scale-105 transition-all duration-300;
+  }
+}
