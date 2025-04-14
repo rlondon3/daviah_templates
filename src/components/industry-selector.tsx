@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react"
 import { useState } from "react"
 import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
+import { Link } from "react-router-dom"
 
 interface IndustrySelectorProps {
   selectedIndustry: string
@@ -101,13 +102,19 @@ export function IndustrySelector({ selectedIndustry, onIndustryChange, showNav, 
             </motion.div>
           </div>
 
-          <Button
-            variant="outline"
-            onClick={onToggleNav}
-            className="ml-4"
-          >
-            Show Navigation
-          </Button>
+          <div className="flex items-center space-x-4">
+            <Link to="/">
+              <Button variant="outline">
+                Pricing
+              </Button>
+            </Link>
+            <Button
+              variant="outline"
+              onClick={onToggleNav}
+            >
+              Show Navigation
+            </Button>
+          </div>
         </div>
       </div>
     </motion.div>

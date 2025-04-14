@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { IndustrySelector } from './components/industry-selector'
 import { Navigation } from './components/navigation'
@@ -58,6 +59,7 @@ import { BarbershopFooter } from './components/footers/BarbershopFooter'
 import { TattooFooter } from './components/footers/TattooFooter'
 import { ContractorFooter } from './components/footers/ContractorFooter'
 import { RealEstateFooter } from './components/footers/RealEstateFooter'
+import { PricingPage } from './components/PricingPage'
 import { type Industry } from './types/industry'
 
 const pageTransition = {
@@ -67,7 +69,7 @@ const pageTransition = {
   transition: { duration: 0.3 }
 }
 
-function App() {
+function TemplatesPage() {
   const [industry, setIndustry] = useState<Industry>('ecommerce')
   const [showNav, setShowNav] = useState(false)
 
@@ -230,6 +232,17 @@ function App() {
         </motion.div>
       </AnimatePresence>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<PricingPage />} />
+        <Route path="/templates" element={<TemplatesPage />} />
+      </Routes>
+    </Router>
   )
 }
 
